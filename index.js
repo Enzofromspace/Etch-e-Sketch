@@ -34,8 +34,24 @@ function draw({key}) {
   ctx.beginPath();
   ctx.moveTo(x,y);
   //move x & y based on user input
-  x -= MOVE_AMOUNT;
-  y -= MOVE_AMOUNT;
+  switch (key) {
+    case 'ArrowUp':
+      y -= MOVE_AMOUNT;
+      break;
+    case 'ArrowRight':
+      x += MOVE_AMOUNT;
+      break;
+    case 'ArrowDown':
+      y += MOVE_AMOUNT;
+      break;
+    case 'ArrowLeft':
+      x -= MOVE_AMOUNT;
+      break;
+    default:
+      break;  
+  }
+  
+
   ctx.lineTo(x, y);
   ctx.stroke();
 }
