@@ -6,6 +6,8 @@ const canvas = document.querySelector('#etch-a-sketch');
 const ctx = canvas.getContext('2d'); // ctx short for for context
 const shakebutton = document.querySelector('.shake');
 
+const MOVE_AMOUNT = 10;
+
 //setup our canvas for drawing
 
 const {width, height } = canvas; // a var called height and width from the same props on our canvas
@@ -26,8 +28,16 @@ ctx.stroke();
 
 
 // write a draw function
-function draw(options) {
-  console.log(options);
+function draw({key}) {
+  console.log(key);
+  //path starts
+  ctx.beginPath();
+  ctx.moveTo(x,y);
+  //move x & y based on user input
+  x -= MOVE_AMOUNT;
+  y -= MOVE_AMOUNT;
+  ctx.lineTo(x, y);
+  ctx.stroke();
 }
 
 //write a handler for the keys
@@ -35,8 +45,6 @@ function handleKey(e) {
   if (e.key.includes('Arrow')){
     e.preventDefault();
     draw({key: e.key});
-    console.log(e.key);
-    console.log('handled');
   }
 }
 
